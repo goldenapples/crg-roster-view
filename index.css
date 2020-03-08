@@ -1,0 +1,84 @@
+body {
+    height: 100vh;
+    background: #222222;
+    background: -webkit-gradient(
+        linear, 0 0, 0 100%,
+        from(#000000),
+        color-stop(50%, #222222),
+        color-stop(100%, #777777)
+    );
+
+    font-family: 'LiberationSans', Helvetica;
+    font-weight: bold;
+    color: #fff;
+}
+
+#teams {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.team {
+    width: 50%;
+    flex-width: 50%;
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 2em;
+    justify-content: start;
+    position: relative;
+}
+
+.team__name {
+    font-size: 10vh;
+    line-height: 1;
+    margin: 0 0 2vh 9.5rem;
+}
+
+.team__logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0.1;
+    z-index: -1;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.team__roster {
+    clear: both;
+    list-style-type: none;
+    display: grid;
+    grid-template-columns: 9.375rem auto 3rem;
+    font-size: 30px;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+}
+
+.skater {
+    vertical-align: baseline;
+}
+
+.skater__number {
+    grid-column: 1;
+    text-align: right;
+    padding-right: .5em;
+    font-size: 5vh;
+    line-height: 5vh;
+    /*-webkit-text-stroke: 1px white;*/
+    /*color: transparent;*/
+}
+
+.skater__name {
+    grid-column: 2;
+    font-size: 4vh;
+    font-style: italic;
+}
+
+.skater__flags {
+    grid-column: 3;
+
+}
