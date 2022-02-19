@@ -8,7 +8,6 @@ const updateTeamSettings = ( { Team, Color, field }, value ) => {
 
     if ( field === 'Color' ) {
 
-    console.log( Team, Color, value );
         TEAMS[ teamIdx ].Colors[ Color ] = value;
     } else {
         TEAMS[ teamIdx ][ field ] = value;
@@ -34,8 +33,8 @@ const render = () => TEAMS.forEach( renderTeam );
 const renderTeam = ( team, i ) => {
     const $team = $( `#team--${ i+1 }` );
     const skaters = Object.values( team.Skaters )
-        .filter( ( { Number } ) => Number )
-        .sort( ( a, b ) => a.Number && a.Number.localeCompare( b.Number ) );
+        .filter( ( { RosterNumber } ) => RosterNumber )
+        .sort( ( a, b ) => a.RosterNumber && a.RosterNumber.localeCompare( b.RosterNumber ) );
     
    $( 'h2', $team ).html( team.Name ).css( {
        color: team.Colors.scoreboard_fg,
@@ -43,15 +42,15 @@ const renderTeam = ( team, i ) => {
    } );
 
    $( '.team__logo', $team ).css( {
-       backgroundImage: `url( ${ team.Logo } )`
+       backgroundImage: `url('${ team.Logo }' )`
    } );
 
    $( 'ul', $team ).html('');
 
    skaters.forEach( 
-       ( { Name, Number, Flags } ) => 
+       ( { Name, RosterNumber, Flags } ) => 
             $( `
-                  <span class="skater__number">${ Number }</span>
+                  <span class="skater__number">${ RosterNumber }</span>
                   <span class="skater__name">${ Name }</span>
                   <span class="skater__flags">${ Flags }</span>
                   `
@@ -70,7 +69,7 @@ const init = () => {
     WS.Register( [
         "ScoreBoard.Team(*).Skater(*).Flags",
         "ScoreBoard.Team(*).Skater(*).Name",
-        "ScoreBoard.Team(*).Skater(*).Number" 
+        "ScoreBoard.Team(*).Skater(*).RosterNumber" 
     ], updateSkaterSettings );
 
     WS.Connect();
